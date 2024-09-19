@@ -43,6 +43,39 @@
   <script src="static/js/bulma-carousel.min.js"></script>
   <script src="static/js/bulma-slider.min.js"></script>
   <script src="static/js/index.js"></script>
+
+  <style>
+    .video-container {
+        display: flex;
+        justify-content: space-between;
+    }
+    .video-container video {
+        width: 30%;
+        height: auto;
+    }
+    .video-item {
+        width: 30%;
+        text-align: center;
+    }
+    .video-item video {
+        width: 100%;
+        height: auto;
+    }
+    .video-title {
+        margin-top: 5px;
+        font-size: 1.5em;
+        color: #333;
+    }
+    .slide {
+      color: #e86b11;
+    }
+    .marginal {
+      color: #3dd4e5;
+    }
+    .robust {
+      color: #969696;
+    }
+</style>
 </head>
 <body>
 
@@ -52,7 +85,7 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Robots that Learn to Safely Influence via Prediction-Informed Reach-Avoid Dynamic Games</h1>
+            <h1 class="title is-2 publication-title">Robots that Learn to Safely Influence via <br /> Prediction-Informed Reach-Avoid Dynamic Games</h1>
             <div class="is-size-5 publication-authors">
               <!-- Paper authors -->
               <span class="author-block">
@@ -72,15 +105,15 @@
                   <div class="column has-text-centered">
                     <div class="publication-links">
                          <!-- Arxiv PDF link -->
-                      <span class="link-block">
-                        <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank"
-                        class="external-link button is-normal is-rounded is-dark">
-                        <span class="icon">
-                          <i class="fas fa-file-pdf"></i>
-                        </span>
-                        <span>Paper</span>
-                      </a>
-                    </span>
+                      <!-- <span class="link-block"> -->
+                        <!-- <a href="https://arxiv.org/pdf/<ARXIV PAPER ID>.pdf" target="_blank" -->
+                        <!-- class="external-link button is-normal is-rounded is-dark"> -->
+                        <!-- <span class="icon"> -->
+                          <!-- <i class="fas fa-file-pdf"></i> -->
+                        <!-- </span> -->
+                        <!-- <span>Paper</span> -->
+                      <!-- </a> -->
+                    <!-- </span> -->
 
                   <!-- Github link -->
                   <span class="link-block">
@@ -89,13 +122,13 @@
                     <span class="icon">
                       <i class="fab fa-github"></i>
                     </span>
-                    <span>Code</span>
+                    <span>Code [coming soon]</span>
                   </a>
                 </span>
 
                 <!-- ArXiv abstract Link -->
                 <span class="link-block">
-                  <a href="https://arxiv.org/abs/<ARXIV PAPER ID>" target="_blank"
+                  <a href="https://arxiv.org/abs/2409.12153" target="_blank"
                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon">
                     <i class="ai ai-arxiv"></i>
@@ -117,11 +150,15 @@
   <div class="container is-max-desktop">
     <div class="hero-body">
       <div style="text-align: center;">
-        <img src="static/images/front_fig.png" width="80%"/>
+        <img src="static/images/front_figure.gif" width="75%"/>
+        <!-- </video> -->
       </div>
-      <h2 class="subtitle has-text-centered">
+      <!-- <h2 class="subtitle has-text-centered">
         Both human and robot arms want to reach their desired objects on the table, but they don't know who is going for which object. <b>Top Row:</b> The human's desired object can be influenced by the robot. Using a influence-<i>unaware</i> safety shield the robot can stay safe, but fails to reach its own object (not <i>live</i>). With our method (SLIDE) the robot influences the human's goal and safely reaches its object. <b>Bottom Row:</b> The human never changes their desired object. Naive influence-aware robot controllers are over-confident  and collide. SLIDE recognizes that this can be unsafe and chooses a different goal for the robot, staying safe and live.
-      </h2>
+      </h2> -->
+      <p class="has-text-justified">
+        <i><b>Left:</b> Naively applying safe control or an influence-aware model in isolation can result in incomplete (not live) or unsafe behavior. <b>Right:</b> With our method (SLIDE), the robot can safely influence the human and reach its own object.</i>
+      </p>
     </div>
   </div>
 </section>
@@ -136,7 +173,7 @@
         <div class="content has-text-justified">
           <p>
             Robots can influence people to accomplish their tasks more efficiently: autonomous cars can inch forward at an intersection to pass through, and  tabletop manipulators can go for an object on the table first. However, a robot's ability to influence can also compromise the safety of nearby people if naively executed. In this work, we pose and solve a novel robust reach-avoid dynamic game which enables robots to be maximally influential, but only when a safety backup control exists. On the human side, we model the human's behavior as goal-driven but conditioned on the robot's plan, enabling us to capture influence. 
-            On the robot side, we solve the dynamic game in the joint physical and belief space, enabling the robot to reason about how its uncertainty in human behavior will evolve over time. We instantiate our method, called SLIDE (Safely Leveraging Influence in Dynamic Environments), in a high-dimensional (39-D) simulated human-robot collaborative manipulation task solved via offline game-theoretic reinforcement learning. We compare our approach to a robust baseline that treats the human as a worst-case adversary, a safety controller that does not explicitly reason about influence, and an energy-function-based safety shield. 
+            On the robot side, we solve the dynamic game in the joint physical and belief space, enabling the robot to reason about how its uncertainty in human behavior will evolve over time. We instantiate our method, called <strong>SLIDE</strong> (Safely Leveraging Influence in Dynamic Environments), in a high-dimensional (39-D) simulated human-robot collaborative manipulation task solved via offline game-theoretic reinforcement learning. We compare our approach to a robust baseline that treats the human as a worst-case adversary, a safety controller that does not explicitly reason about influence, and an energy-function-based safety shield. 
             We find that SLIDE consistently enables the robot to leverage the influence it has on the human when it is safe to do so, ultimately allowing the robot to be less conservative while still ensuring a high safety rate during task execution.
 
           </p>
@@ -147,6 +184,127 @@
 </section>
 <!-- End paper abstract -->
 
+<!-- System diagram -->
+<section class="hero is-small">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <br>
+        <h2 class="title is-3">Method Overview</h2>
+        <div class="content has-text-justified">
+          <p>
+            <img src="static/images/system_diagram.png" width="100%"/>
+          </p>
+          <p>
+            <b>(left)</b> Before solving the reach-avoid game, we specify the target set (goal locations), failure set (collisions), and a conditional behavior prediction (CBP) model that can predict the human's future trajectory conditioned on the robot's future plan. <b>(center)</b> During simulated gameplay, the SLIDE policy, <math xmlns="http://www.w3.org/1998/Math/MathML"><msubsup><mi>π</mi><mrow><mi>ℛ</mi></mrow><mo>*</mo></msubsup><mfenced>(<msub><mi>x</mi><mi>e</mi></msub>)</mfenced></math>, is trained against a simulated human adversary <math xmlns="http://www.w3.org/1998/Math/MathML"><msubsup><mi>π</mi><mrow><mi>ℋ</mi></mrow><mo>†</mo></msubsup><mfenced>(<msub><mi>x</mi><mi>e</mi></msub>)</mfenced></math> whose control bounds are informed by the CBP model. <b>(right)</b> Online, the robot uses its robust SLIDE policy to safely influence against <i>any</i>> human.
+          </p>
+          <br>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End system diagram -->
+
+
+<!-- Baselines -->
+<section class="hero is-small is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <br />
+        <h2 class="title is-3">Baselines</h2>
+        <div class="content has-text-justified">
+          <p>
+            <span class="marginal">Marginal-RA</span> has a similar structure to the SLIDE policy, but does not consider the influence that the robot's future plan has on the human's future trajectory (i.e. it uses a <i>marginal</i> prediction model).
+          </p>
+          <p>
+            <span class="robust">Robust-RA</span> treats the human as a worst-case adversary and does not consider any prediction model of the human.
+          </p>
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div class="columns is-centered has-text-centered">
+        <div class="column">
+          <h2 class="title is-3">Policy Comparison</h2>
+        </div>
+      </div>
+      <div class="video-container">
+        <div class="video-item">
+          <video controls autoplay muted loop>
+              <source src="static/videos/traj_compare/slide.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+          <p class="video-title">
+            <span class="slide">SLIDE</span> Policy
+          </p>
+        </div>
+        <div class="video-item">
+          <video controls autoplay muted loop>
+              <source src="static/videos/traj_compare/marginal.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+          <p class="video-title">
+            <span class="marginal">Marginal-RA</span> Policy
+          </p>
+        </div>
+        <div class="video-item">
+          <video controls autoplay muted loop>
+              <source src="static/videos/traj_compare/robust.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+          </video>
+          <p class="video-title">
+            <span class="robust">Robust-RA</span> Policy
+          </p>
+        </div>
+      </div>
+      <br />
+      <div class="content has-text-justified">
+        <strong>Closed-Loop Simulations:</strong> <span class="slide">SLIDE</span>, <span class="marginal">Marginal-RA</span> and <span class="robust">Robust-RA</span> policies starting from the same initial condition. <span class="slide">SLIDE</span> confidently understands that the human will be influenced to move out of its way as it chooses the blue bottle and reaches the fastest (the human changes its mind from the blue bottle to the yellow mug at <i>t=1.2s</i>). <span class="marginal">Marginal-RA</span> waits until the human is out of its way and chooses the yellow mug. <span class="robust">Robust-RA</span> stays cautious even as the human is moving towards a different goal and finishes last. 
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Effect of CBP -->
+<section class="hero is-small is-light">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column">
+        <br />
+        <h2 class="title is-3">Effect of Conditional Behavior Prediction (CBP) Model</h2>
+        <div class="content has-text-justified">
+          <div style="text-align: center;">
+            <img src="static/images/cbp.png" width="75%"/>
+          </div>
+          Most-likely mode of SLIDE's CBP model given different future robot plans. Each robot plan has a corresponding human prediction in the same color. The prediction is highly dependent on the robot's plan and captures the idea that the human will change goals to a different semantic class.
+          <br />
+          <div style="text-align: center;">
+            <img src="static/images/ade_fde.png" width="75%"/>
+          </div>
+          Table shows ADE (FDE) of the CBP model and a marginal prediction model used for the Marginal-RA baseline. While both models have similar ADE, the CBP model lowers the FDE, particularly on <i>interactive</i> states (i.e. states where human changes goals).
+          <br />
+          <div style="text-align: center;">
+            <img src="static/images/control_bounds.png" width="75%"/>
+          </div>
+          We measure the size of the inferred control bound for the human model used in offline simulated gameplay. On the
+          full dataset, the CBP model results in a smaller control bound on average. This implies that SLIDE's downstream policy (which uses the CBP model) will be able to exploit its influence on the human and thus choose less conservative actions.
+          <br />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
   <footer class="footer">
   <div class="container">
     <div class="columns is-centered">
@@ -154,10 +312,7 @@
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
 
         </div>
       </div>
